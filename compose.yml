@@ -18,7 +18,7 @@ services:
     volumes:
       - ./tmp/mysql_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: kb23ufg294vbojnsl
+      MYSQL_ROOT_PASSWORD: mypassword
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       interval: 10s
@@ -31,8 +31,10 @@ services:
     ports:
       - '15672:15672'
     environment:
-      RABBITMQ_DEFAULT_USER: user
-      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: mypassword
+    volumes:
+      - ./tmp/rabbitmq_data:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 10s
@@ -48,5 +50,5 @@ services:
       - PMA_HOST=mysql
       - PMA_PORT=3306
       - PMA_USER=root
-      - PMA_PASSWORD=kb23ufg294vbojnsl
+      - PMA_PASSWORD=mypassword
       - PMA_ARBITRARY=1
