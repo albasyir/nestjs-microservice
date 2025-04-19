@@ -1,0 +1,38 @@
+name: 'nestjs-microservice'
+
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+      - '3002:3002'
+    volumes:
+      - .:/app
+
+  mysql:
+    image: mysql:8.4
+    volumes:
+      - ./tmp/mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: kb23ufg294vbojnsl
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 5100:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=kb23ufg294vbojnsl
+      - PMA_ARBITRARY=1
