@@ -19,6 +19,20 @@ will be explained leter
 - 5100 is port for database management
 - 15672 is port for rabbitMQ management
 
+#### Credential Ops
+
+- MySQL
+  - username: root
+  - password: mypassword
+- RabbitMQ
+  - username: rabbitmq
+  - password: mypassword
+
+#### Information
+
+- your development data are safe on `./tmp` folder so expect will be presist even you delete docker volume
+- `./tmp` folder data can be copy to other device however it can guaranty us data isn't corrupt
+
 ### Production
 
 will be explained leter
