@@ -30,9 +30,10 @@ will be explained leter
 
 #### Information
 
+- `./tmp/*` represent data related with service(s)
 - your development data are safe on `./tmp` folder so expect will be presist even you delete docker volume
-- `./tmp` folder data can be copy to other device however it can guaranty us data isn't corrupt
-
+- `./tmp` folder data can be copy to other device however it can't guaranty corruption, (maybe) as long as you copy /backup when docker state stop and (always) was gracefully stopping
+  
 ### Production
 
 will be explained leter

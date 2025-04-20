@@ -1,19 +1,18 @@
 import { Logger, Module } from '@nestjs/common';
-import { NotificationController } from './notification.controller';
-import { NotificationService } from './notification.service';
+import { KitchenController } from './kitchen.controller';
+import { KitchenService } from './kitchen.service';
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 
 @Module({
   imports: [
     RabbitMQModule.forRoot({
-      name: 'order.confirmation',
       logger: new Logger(RabbitMQModule.name),
       uri: `amqp://rabbitmq:mypassword@rabbitmq:5672`,
       connectionInitOptions: { wait: false },
       enableControllerDiscovery: true,
-    })
+    }),
   ],
-  controllers: [NotificationController],
-  providers: [NotificationService, NotificationController],
+  controllers: [KitchenController],
+  providers: [KitchenService, KitchenController],
 })
-export class NotificationModule {}
+export class KitchenModule {}

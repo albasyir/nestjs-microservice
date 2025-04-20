@@ -17,6 +17,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@ourinternal/keep-alive-microservice": [
+        "libs/keep-alive-microservice/src"
+      ],
+      "@ourinternal/keep-alive-microservice/*": [
+        "libs/keep-alive-microservice/src/*"
+      ]
+    }
   }
 }

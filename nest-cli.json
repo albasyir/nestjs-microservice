@@ -3,20 +3,20 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/order/src",
   "compilerOptions": {
-    "deleteOutDir": true,
+    "deleteOutDir": false,
     "webpack": true,
     "tsConfigPath": "apps/order/tsconfig.app.json"
   },
   "monorepo": true,
   "root": "apps/order",
   "projects": {
-    "order": {
-      "type": "application",
-      "root": "apps/order",
-      "entryFile": "main",
-      "sourceRoot": "apps/order/src",
+    "keep-alive-microservice": {
+      "type": "library",
+      "root": "libs/keep-alive-microservice",
+      "entryFile": "index",
+      "sourceRoot": "libs/keep-alive-microservice/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/order/tsconfig.app.json"
+        "tsConfigPath": "libs/keep-alive-microservice/tsconfig.lib.json"
       }
     },
     "kitchen": {
@@ -35,6 +35,15 @@
       "sourceRoot": "apps/notification/src",
       "compilerOptions": {
         "tsConfigPath": "apps/notification/tsconfig.app.json"
+      }
+    },
+    "order": {
+      "type": "application",
+      "root": "apps/order",
+      "entryFile": "main",
+      "sourceRoot": "apps/order/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/order/tsconfig.app.json"
       }
     }
   }

@@ -20,16 +20,26 @@
     "test:e2e": "jest --config ./apps/kitchen/test/jest-e2e.json"
   },
   "dependencies": {
+    "@golevelup/nestjs-rabbitmq": "^5.7.0",
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/microservices": "^11.0.20",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/typeorm": "^11.0.0",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "mysql2": "^3.14.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.22"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
-    "@nestjs/cli": "^11.0.0",
+    "@nestjs/cli": "^11.0.6",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
     "@swc/cli": "^0.6.0",
@@ -71,7 +81,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@ourinternal/keep-alive-microservice(|/.*)$": "<rootDir>/libs/keep-alive-microservice/src/$1"
+    }
   }
 }

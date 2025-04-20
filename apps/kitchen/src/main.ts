@@ -1,8 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { KitchenModule } from './kitchen.module';
+import { ConsoleLogger } from '@nestjs/common';
+import { KeepAliveStrategy } from '@ourinternal/keep-alive-microservice';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3001);
+  const app = await NestFactory.createMicroservice(KitchenModule, {
+    logger: new ConsoleLogger({ prefix: 'Kitchen' }),
+    strategy: new KeepAliveStrategy(),
+  });
+
+  await app.listen();
 }
 bootstrap();
