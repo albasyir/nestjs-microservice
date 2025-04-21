@@ -27,7 +27,9 @@ export class TypeORMConfigDto {
   @IsString()
   DB_NAME: string;
 
-  @Transform((v: unknown) => v === true || (isString(v) && v === 'true'))
+  @Transform(({ value }) => {
+    return value === true || (isString(value) && value == 'true');
+  })
   @IsOptional()
   @IsBoolean()
   DB_OPTION_MIGRATION_AUTORUN?: boolean;
