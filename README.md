@@ -16,7 +16,7 @@ implement fan-out pattern
   - for production, one app, one container
 - access http://localhost:3000 or http://localhost:3000/docs
   - after access that i think you will know
-  - there's to module `Order` and `Menu` all documented well there
+  - there's module `Order` and `Menu` all documented well there
 
 ## Run Project
 
