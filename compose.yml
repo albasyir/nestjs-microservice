@@ -10,6 +10,9 @@ services:
       - '3000:3000'
     volumes:
       - .:/app
+    depends_on:
+      - mysql
+      - rabbitmq
 
   mysql:
     image: mysql:8.4
