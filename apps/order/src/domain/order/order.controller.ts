@@ -1,20 +1,23 @@
-import { Body, Controller, Get, Post, Redirect } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import { Order } from './order.entity';
 import { OrderService } from './order.service';
+import { PaginateOrderDto } from './dto/paginate-order.dto';
+import { PaginateOrderQueryDto } from './dto/paginate-order-query.dto';
 
-@Controller()
+@Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService) { }
 
   /**
-   * redirect to documentation
+   * get order list with pagination
    */
   @Get()
-  @Redirect('/docs')
-  @ApiExcludeEndpoint()
-  redirect() {}
+  async paginate(
+    @Query() query: PaginateOrderQueryDto,
+  ): Promise<PaginateOrderDto> {
+    return this.orderService.paginate(query);
+  }
 
   /**
    * create new order

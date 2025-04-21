@@ -5,6 +5,8 @@ import { Order, OrderStatus } from './order.entity';
 import { v7 } from 'uuid';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { MenuService } from '../menu/menu.service';
+import { PaginateOrderDto } from './dto/paginate-order.dto';
+import { PaginateOrderQueryDto } from './dto/paginate-order-query.dto';
 
 @Injectable()
 export class OrderService {
@@ -90,5 +92,20 @@ export class OrderService {
     );
 
     return updatedOrderStatus;
+  }
+
+  async paginate(query: PaginateOrderQueryDto): Promise<PaginateOrderDto> {
+    this.logger.log('finding all orders...');
+    const [orders, total] = await this.orderRepository.findAndCount({
+      skip: (query.page - 1) * query.size,
+      take: query.size,
+    });
+    this.logger.log('orders found');
+    return {
+      page: query.page,
+      size: query.size,
+      total,
+      list: orders,
+    };
   }
 }
