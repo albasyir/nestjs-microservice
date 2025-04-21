@@ -4,9 +4,10 @@ import { OrderService } from './order.service';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { OrderRepository } from './order.repository';
 import { OrderRabbitMQ } from './order.rabbitmq';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
-  imports: [InfrastructureModule],
+  imports: [InfrastructureModule, MenuModule],
   controllers: [OrderController],
   providers: [OrderRabbitMQ, OrderService, OrderRepository],
 })
