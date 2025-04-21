@@ -4,6 +4,7 @@ import { Menu } from './menu.entity';
 import { v7 } from 'uuid';
 import { PaginateMenuDto } from './dto/paginate-menu.dto';
 import { PaginateMenuQueryDto } from './dto/paginate-menu-query.dto';
+import { In } from 'typeorm';
 
 @Injectable()
 export class MenuService {
@@ -45,6 +46,22 @@ export class MenuService {
     if (!menu) return;
     this.logger.log(`menu with ID ${id} found`);
     return menu;
+  }
+
+  async findByIds(ids: string[]): Promise<Menu[]> {
+    this.logger.log(`finding menus with IDs: ${ids.join(', ')}...`);
+
+    const menus = await this.menuRepository.findBy({
+      id: In(ids),
+    });
+
+    if (menus.length === 0) {
+      this.logger.verbose('no menus found');
+    } else {
+      this.logger.verbose(`found ${menus.length} menus`);
+    }
+
+    return menus;
   }
 
   async update(

@@ -1,4 +1,5 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn } from 'typeorm';
+import { Menu } from '../menu/menu.entity';
 
 export enum OrderStatus {
   PENDING = 'pending',
@@ -17,15 +18,16 @@ export class Order {
    * menu that ordered
    */
   @Column('json')
-  foodMenus: {
-    name: string;
-    price: number;
-  }[];
+  foodMenus: Array<
+    Menu & {
+      qty: number;
+    }
+  >;
 
   /**
    * customer email
    *
-   * @example aziz@bestcandidate.com
+   * @example aziz@mycandidate.com
    */
   @Column()
   customerEmail: string;
