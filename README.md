@@ -1,6 +1,20 @@
 # NestJS Microservice
 
-will be explained leter
+implement fan-out pattern
+
+>[!NOTE]
+>This implementation is running well on MacOS (because the only device that i have) however it should be ran on other device (Windows or Linux) since i use basic docker image
+
+>[!WARNING]
+>Development in Windows might challenging, if using windows to test it, might be run on production way is the good decision or put this project into WSL2
+
+## How to Test
+
+- run project (dev or production)
+  - read below (more) to know how to run any env (including your remote AC 😆)
+  - for dev it will automatically run all apps
+  - for production, one app, one container
+- access http://localhost:3000
 
 ## Run Project
 
@@ -36,4 +50,21 @@ will be explained leter
   
 ### Production
 
-will be explained leter
+how we deploy for one server or different server, here's strategy
+
+- build once to speedup CI/CD and reduce resource usage
+- same image contain all apps
+- to run which app should be run, we only need passing env `APP_TYPE` variable
+  - example to run order app, we have to pass `APP_TYPE=order`
+
+#### Simulate Production
+
+the idea is, we run example infrastructure that can reproduce "production like" and we run each app for each container so one app (example order) is run on it own container so we can make sure that scale
+
+- build docker image with `docker build . --target production --tag nestjs-microservice-apps`, tag name can be changed
+- simulate infrastructure by 
+  - make sure ports 15672, 5672, 3306, 5100 are free
+  - execute `docker compose -f ./docker/production/compose-example.yml up`
+- run with `docker run -p 3000:3000 --env-file ./docker/production/.env.example -e APP_TYPE=order nestjs-microservice-apps` 
+  - env can be change as you wish
+  - for port you can skip when deploy app that doesn't need http exposure like `docker run --env-file ./docker/production/.env.example -e APP_TYPE=kitchen nestjs-microservice-apps`

@@ -8,6 +8,18 @@ FROM node:22.14 AS base
 WORKDIR /app
 
 ###########################################
+# Install Project Depedencies
+###########################################
+FROM base AS install_deps
+
+# Copy only file that required for install depedency
+COPY ./package-lock.json ./package-lock.json
+COPY ./package.json ./package.json
+
+# Install all package dependencies
+RUN npm install --frozen-lockfile
+
+###########################################
 # Build App
 ###########################################
 FROM base AS build
@@ -18,9 +30,9 @@ COPY --from=install_deps /app/node_modules ./node_modules
 ENV NODE_ENV=production
 
 # Run the build command
-RUN bun run build order
-RUN bun run build kitchen
-RUN bun run build notification
+RUN npm run build order
+RUN npm run build kitchen
+RUN npm run build notification
 
 ###########################################
 # Development Image
@@ -38,18 +50,6 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 ENV NODE_ENV=development
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
-###########################################
-# Install Project Depedencies
-###########################################
-FROM base AS install_deps
-
-# Copy only file that required for install depedency
-COPY ./package-lock.json ./package-lock.json
-COPY ./package.json ./package.json
-
-# Install all package dependencies
-RUN npm install --frozen-lockfile
 
 ###########################################
 # Production Image
