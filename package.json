@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/kitchen/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/kitchen/test/jest-e2e.json",
+    "order:migration:order:create": "cd ./apps/order/src/infrastructure/typeorm/migrations && typeorm migration:create"
   },
   "dependencies": {
     "@golevelup/nestjs-rabbitmq": "^5.7.0",
@@ -26,6 +27,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/microservices": "^11.0.20",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.1.4",
     "@nestjs/typeorm": "^11.0.0",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.7",
@@ -34,7 +36,9 @@
     "mysql2": "^3.14.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.22"
+    "typeorm": "^0.3.22",
+    "typeorm-naming-strategies": "^4.1.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

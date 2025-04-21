@@ -16,6 +16,7 @@ services:
     volumes:
       - ./tmp/mysql_data:/var/lib/mysql
     environment:
+      MYSQL_DATABASE: mydatabase
       MYSQL_ROOT_PASSWORD: mypassword
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']

@@ -3,9 +3,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/order/src",
   "compilerOptions": {
-    "deleteOutDir": false,
-    "webpack": true,
-    "tsConfigPath": "apps/order/tsconfig.app.json"
+    "deleteOutDir": true,
+    "webpack": false,
+    "tsConfigPath": "apps/order/tsconfig.app.json",
+    "plugins": [
+      {
+        "name": "@nestjs/swagger",
+        "options": {
+          "classValidatorShim": true,
+          "introspectComments": true
+        }
+      }
+    ]
   },
   "monorepo": true,
   "root": "apps/order",

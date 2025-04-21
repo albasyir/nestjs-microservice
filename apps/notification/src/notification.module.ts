@@ -11,7 +11,7 @@ import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
       uri: `amqp://rabbitmq:mypassword@rabbitmq:5672`,
       connectionInitOptions: { wait: false },
       enableControllerDiscovery: true,
-    })
+    }),
   ],
   controllers: [NotificationController],
   providers: [NotificationService, NotificationController],
