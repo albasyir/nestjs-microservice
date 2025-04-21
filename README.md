@@ -6,7 +6,7 @@ implement fan-out pattern
 >This implementation is running well on MacOS (because the only device that i have) however it should be ran on other device (Windows or Linux) since i use basic docker image
 
 >[!WARNING]
->Development in Windows might challenging, if using windows to test it, might be run on production way is the good decision or put this project into WSL2
+>For production, i'm sure this will work, however development in Windows might challenging for now (unless i adjust for no mounting strategy)
 
 ## How to Test
 
