@@ -1,10 +1,25 @@
 import { registerAs } from '@nestjs/config';
+import { RabbitMQConfigDto } from './dto/rabbitmq-config.dto';
+import { validateSync } from 'class-validator';
+import { plainToClass } from 'class-transformer';
 
 export const rabbitmqConfigRegistration = registerAs('rabbitmq', () => {
+  const validatedEnv = plainToClass(RabbitMQConfigDto, process.env);
+
+  const errors = validateSync(validatedEnv);
+
+  if (errors.length > 0) {
+    throw new Error(
+      `RabbitMQ environment variables validation failed: ${errors
+        .map((error) => Object.values(error.constraints || {}))
+        .join(', ')}`,
+    );
+  }
+
   return {
-    host: process.env.RABBIT_HOST || 'rabbitmq',
-    port: process.env.RABBIT_PORT || 5672,
-    user: process.env.RABBIT_USER || 'rabbitmq',
-    pass: process.env.RABBIT_PASS || 'mypassword',
+    host: validatedEnv.RABBIT_HOST,
+    port: validatedEnv.RABBIT_PORT,
+    user: validatedEnv.RABBIT_USER,
+    pass: validatedEnv.RABBIT_PASS,
   };
 });
