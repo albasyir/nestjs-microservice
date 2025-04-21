@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, Redirect } from '@nestjs/common';
-import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import { Order } from './order.entity';
+import { OrderService } from './order.service';
 
 @Controller()
 export class OrderController {

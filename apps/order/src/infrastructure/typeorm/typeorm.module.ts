@@ -2,8 +2,6 @@ import { ConfigType } from '@nestjs/config';
 import { typeormConfigRegistration } from './typeorm.config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Logger } from '@nestjs/common';
-
-import CreateOrderTable1745210070564 from './migrations/1745210070564-create_order_table';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 export const ResolvedTypeOrmModule = TypeOrmModule.forRootAsync({

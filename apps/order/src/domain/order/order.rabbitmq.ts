@@ -1,7 +1,7 @@
 import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { Injectable, Logger } from '@nestjs/common';
-import { OrderService } from './order.service';
 import { Order } from './order.entity';
+import { OrderService } from './order.service';
 
 @Injectable()
 export class OrderRabbitMQ {

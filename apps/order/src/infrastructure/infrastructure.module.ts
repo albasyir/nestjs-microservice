@@ -9,6 +9,5 @@ import { ResolvedTypeOrmModule } from './typeorm/typeorm.module';
     ResolvedRabbitMQModule,
     ResolvedConfigModule,
   ],
-  exports: [ResolvedRabbitMQModule],
 })
 export class InfrastructureModule {}

@@ -1,7 +1,7 @@
 import { Controller, Logger } from '@nestjs/common';
 import { KitchenService } from './kitchen.service';
 import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
-import { Order } from 'apps/order/src/order.entity';
+import { Order } from 'apps/order/src/domain/order/order.entity';
 
 @Controller()
 export class KitchenController {

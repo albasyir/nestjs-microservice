@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { OrderModule } from './order.module';
 import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(OrderModule, {
+  const app = await NestFactory.create(AppModule, {
     logger: new ConsoleLogger({ prefix: 'Order' }),
   });
 

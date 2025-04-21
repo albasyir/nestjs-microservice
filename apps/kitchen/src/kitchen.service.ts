@@ -1,6 +1,6 @@
 import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 import { Injectable, Logger } from '@nestjs/common';
-import { Order } from 'apps/order/src/order.entity';
+import { Order } from 'apps/order/src/domain/order/order.entity';
 
 @Injectable()
 export class KitchenService {

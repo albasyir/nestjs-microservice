@@ -1,8 +1,9 @@
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
-import { Logger, Module } from '@nestjs/common';
+import { Global, Logger, Module } from '@nestjs/common';
 import { rabbitmqConfigRegistration } from './rabbitmq.config';
 import { ConfigType } from '@nestjs/config';
 
+@Global()
 @Module({
   imports: [
     RabbitMQModule.forRootAsync({

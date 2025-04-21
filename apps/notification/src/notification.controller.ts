@@ -1,7 +1,7 @@
 import { Controller, Logger } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
-import { Order } from 'apps/order/src/order.entity';
+import { Order } from 'apps/order/src/domain/order/order.entity';
 
 @Controller()
 export class NotificationController {
@@ -14,7 +14,7 @@ export class NotificationController {
     routingKey: 'created',
     queue: 'order.confirmation',
   })
-  async getNewOrder(data: Order): Promise<void> {
-    await this.notificationService.broadcastNewOrder(data);
+  async getNewOrder(order: Order): Promise<void> {
+    await this.notificationService.broadcastNewOrder(order);
   }
 }
