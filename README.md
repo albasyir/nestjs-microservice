@@ -14,22 +14,25 @@ implement fan-out pattern
   - read below (more) to know how to run any env (including your remote AC 😆)
   - for dev it will automatically run all apps
   - for production, one app, one container
-- access http://localhost:3000
+- access http://localhost:3000 or http://localhost:3000/docs
+  - after access that i think you will know
+  - there's to module `Order` and `Menu` all documented well there
 
 ## Run Project
 
+this section will talk about how run project on Development and Production, and assuming that
+
+- have docker on env that need to run or build it
+- (if needed) you willing freely some ports
+
 ### Development
 
-- install Docker
-- setup env for each apps
 - make sure port 3000, 3001, 3002, 5100, 15672 are free
 - run `docker compose up`
 
 #### Port Information
 
-- 3000 is port for order
-- 3001 is port for kitchen
-- 3002 is port for notification
+- 3000 is port for Order App
 - 5100 is port for database management
 - 15672 is port for rabbitMQ management
 
